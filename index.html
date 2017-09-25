@@ -1,5 +1,12 @@
 <html>
-<head></head>
+<head>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
 <body>
   <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
   <script>
@@ -8,6 +15,32 @@
     socket.on('game-state', (gameState) => {
       console.log(gameState)
     })
+
+    const canvas = document.createElement('canvas')
+    const ctx = canvas.getContext('2d')
+    document.body.appendChild(canvas)
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+
+    function render() {
+      ctx.translate(1, 1)
+      requestAnimationFrame(render)
+      ctx.beginPath()
+      ctx.moveTo(100, 100)
+      ctx.lineTo(100, 200)
+      ctx.lineTo(200, 100)
+      ctx.closePath()
+      ctx.lineWidth = 10
+      ctx.strokeStyle = "cyan"
+      ctx.stroke()
+      ctx.fillStyle = "magenta"
+      ctx.fill()
+
+      ctx.arc(200, 200, 50, 0, Math.PI * 2)
+      ctx.fill()
+    }
+    render()
+
   </script>
 </body>
 </html>
