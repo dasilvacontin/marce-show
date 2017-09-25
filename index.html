@@ -1,0 +1,13 @@
+<html>
+<head></head>
+<body>
+  <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
+  <script>
+    const socket = io('http://localhost:8081')
+    socket.emit('input', {up: true, down: false})
+    socket.on('game-state', (gameState) => {
+      console.log(gameState)
+    })
+  </script>
+</body>
+</html>
